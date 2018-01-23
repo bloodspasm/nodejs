@@ -117,18 +117,18 @@ console.log('Server running on http://%s:%s', ip, port);
 
 
 
-// var mfbPushRss = require('./wb/mfbPushRss');
-// var wbPushRss = require('./wb/wbPushRss');
-//
-// var schedule = require("node-schedule");
-// var rule2     = new schedule.RecurrenceRule();
-// var times1    = [30];
-// rule2.second  = times1;
-// schedule.scheduleJob(rule2, function(){
-//     //5分钟任务
-//     console.log('定时器')
-//     mfbPushRss.startmfbPushRss();
-//     wbPushRss.startwbPushRss()
-// });
+var mfbPushRss = require('./wb/mfbPushRss');
+var wbPushRss = require('./wb/wbPushRss');
+
+var schedule = require("node-schedule");
+var rule2     = new schedule.RecurrenceRule();
+var times1    = [30];
+rule2.second  = times1;
+schedule.scheduleJob(rule2, function(){
+    //5分钟任务
+    console.log('定时器')
+    mfbPushRss.startmfbPushRss();
+    wbPushRss.startwbPushRss()
+});
 
 module.exports = app ;
