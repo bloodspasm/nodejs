@@ -2,7 +2,7 @@
 var express = require('express'),
     app     = express(),
     morgan  = require('morgan');
-    
+var path = require('path');
 Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
@@ -55,6 +55,16 @@ var initDb = function(callback) {
     console.log('Connected to MongoDB at: %s', mongoURL);
   });
 };
+
+
+app.use(express.static(path.join(__dirname, 'public')));
+//设置跨域访问
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    next();
+});
 
 app.get('/', function (req, res) {
   // try to initialize the db on every request if it's not already
