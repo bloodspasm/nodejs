@@ -96,8 +96,8 @@ var SampleApp = function () {
 
                     });
 
-
-                    for (var i = 1; i < obj.data.cards.length-1; i++) {
+                    console.log(obj.data.cards)
+                    for (var i = 0; i < obj.data.cards.length; i++) {
                         var cards = obj.data.cards[i];
                         if (cards.card_type == 9) {
                             var mblog = cards.mblog;
