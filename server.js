@@ -125,7 +125,7 @@ var rule2     = new schedule.RecurrenceRule();
 var times1    = [30];
 rule2.second  = times1;
 schedule.scheduleJob(rule2, function(){
-    //5分钟任务
+    //30秒任务
     console.log('定时器')
     mfbPushRss.startmfbPushRss();
     wbPushRss.startwbPushRss()

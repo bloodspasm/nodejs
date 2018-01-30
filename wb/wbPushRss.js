@@ -26,11 +26,13 @@ var SampleApp = function () {
         //console.log('isArray'+arr)
         //var time = mblog.created_at;
         var time = string;
-        if (Object.prototype.toString.call(time) === "[object String]") {
+        console.log(typeof (time))
+        if (typeof (time)=== "string") {
             var t = time.indexOf('小时');
             var m = time.indexOf('分钟');
             var g = time.indexOf('刚');
-            var z = time.indexOf('2016');
+            var n = time.indexOf('2016');
+            var z = time.indexOf('天');
             var date = new Date();
             date = date.getBJDate();
             if (t > 0) {
@@ -39,8 +41,11 @@ var SampleApp = function () {
                 time = date.format("yyyy-MM-dd");
             } else if (g > 0 || time.length == 2) {
                 time = date.format("yyyy-MM-dd");
-            } else if (z > 0) {
+            } else if (n > 0) {
                 time = time;
+            } else if(z > 0){
+                date.setDate(date.getDate() - 1);
+                time = date.format("yyyy-MM-dd");;
             } else {
                 time = "2017-" + time
             }
@@ -143,8 +148,11 @@ var SampleApp = function () {
                                 description: time,
                                 link: cards.scheme,
                             });
+                            mblog.created_at =  time
+                            var URL = 'https://api.leancloud.cn/1.1/classes/wbPushRss';
+                            self.wb_leancloud(URL,mblog,function () {
 
-
+                            })
                         }
 
                     }
@@ -229,6 +237,47 @@ var SampleApp = function () {
             if (err) throw err;
             // console.log(rss);
         })
+    }
+
+//wbPushRss
+    self.wb_leancloud = function (urls, bodyQuery,callback) {
+
+
+        // console.log('qt_leancloud')
+        //console.log(bodyQuery)
+        var url = urls;
+        var head = {
+            "X-LC-Id": "Dl7oBuzmjMkYOwnRA6JODe7e-gzGzoHsz",
+            "X-LC-Key": "kS1LrrEyiMcAszLFUyMmtdEb",
+            "Content-Type": "application/json"
+        }
+
+        request({
+            url: url,
+            method: "POST",
+            json: true,
+            headers: head,
+            body: bodyQuery
+        }, function (error, response, body) {
+            console.log(body)
+            //console.log(typeof (body))
+            // if(typeof (body) !== 'object'){
+            //     console.log('mmp')
+            //     // self.sleep(1000)
+            //     return self.wb_leancloud(urls, bodyQuery,callback);
+            // }else if (body.code === 137) {
+            //     //console.log(body)
+            //     callback()
+            // }else if (body.code === 1) {
+            //     //console.log(body)
+            //     callback()
+            // }else if (!error && response.statusCode === 200) {
+            //     //console.log(body)
+            //     callback()
+            // }else{
+            //     return self.wb_leancloud(urls, bodyQuery,callback);
+            // }
+        });
     }
 };
 /*  Sample Application.  */
