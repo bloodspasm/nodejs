@@ -150,7 +150,7 @@ var SampleApp = function () {
                             });
                             mblog.created_at =  time
                             var URL = 'https://api.leancloud.cn/1.1/classes/wbPushRss';
-                            self.wb_leancloud(URL,mblog,function () {
+                            self.wb_leancloud(URL,mblog,title,function () {
 
                             })
                         }
@@ -240,7 +240,7 @@ var SampleApp = function () {
     }
 
 //wbPushRss
-    self.wb_leancloud = function (urls, bodyQuery,callback) {
+    self.wb_leancloud = function (urls, bodyQuery,title,callback) {
 
 
         // console.log('qt_leancloud')
@@ -260,25 +260,83 @@ var SampleApp = function () {
             body: bodyQuery
         }, function (error, response, body) {
             console.log(body)
-            //console.log(typeof (body))
-            // if(typeof (body) !== 'object'){
-            //     console.log('mmp')
-            //     // self.sleep(1000)
-            //     return self.wb_leancloud(urls, bodyQuery,callback);
-            // }else if (body.code === 137) {
-            //     //console.log(body)
-            //     callback()
-            // }else if (body.code === 1) {
-            //     //console.log(body)
-            //     callback()
-            // }else if (!error && response.statusCode === 200) {
-            //     //console.log(body)
-            //     callback()
-            // }else{
-            //     return self.wb_leancloud(urls, bodyQuery,callback);
-            // }
+            console.log(typeof (body))
+            self.textSentiment(4,title)
+            if(typeof (body) !== 'object'){
+                // console.log('mmp')
+                // // self.sleep(1000)
+                // return self.wb_leancloud(urls, bodyQuery,callback);
+            }else if (body.code === 137) {
+                //console.log(body)
+                // callback()
+            }else if (body.code === 1) {
+                //console.log(body)
+                // callback()
+            }else if (!error && response.statusCode === 200) {
+                //console.log(body)
+                // self.textSentiment(4,title)
+            }else{
+                // return self.wb_leancloud(urls, bodyQuery,callback);
+            }
         });
     }
+
+
+
+    /**
+     *
+     * 腾讯文智情感分析API
+     * by soonfy
+     *
+     *输入参数
+     *type参数传递分类，1：电商；2：APP；3：美食；4：酒店和其他
+     *content参数传递句子
+     *
+     * 输出参数
+     * positive，正面情感概率
+     * negative，负面情感概率
+     * code，0表示成功，非0表示失败
+     * message，失败时候的错误信息，成功则无该字段
+     *
+     */
+
+    self.textSentiment = function(type, content){
+        var Capi = require('qcloudapi-sdk') ;
+
+        console.log('TextSentiment test start.') ;
+
+        //传递密钥和服务类型，构造qcloudapi对象
+        //密钥需要在腾讯云免费申请
+        //API请求域名为wenzhi.api.qcloud.com，API文档定义标准
+        //API基础域名为api.qcloud.com，API内部默认
+        //API服务类型 = 请求域名 - 基础域名，需要传递参数
+        var capi = new Capi({
+            SecretId : 'AKIDQkv1wj5sAFD1d7HVRbkiU4UiGhGJMxZz' ,
+            SecretKey : 'RhnistmqoaBaopeLuHTaqxwmRuEMI7kC' ,
+            serviceType : 'wenzhi'
+        }) ;
+
+        //传递接口和接口参数，调用对象的request请求方法
+        //区域参数：bj，gz，sh，hk，ca
+        //接口名参数：TextSentiment
+        //特定接口参数
+        capi.request({
+            Region : 'sh' ,
+            Action : 'TextSentiment' ,
+            content : content ,                     //content参数使用
+            type : type                                 //type参数使用
+        } , function(err, data){
+            if(!err){
+                console.log(data) ;
+                console.log('TextSentiment test suc.') ;
+            }else{
+                console.log(err) ;
+                console.log('TextSentiment test err.') ;
+            }
+        }) ;
+    } ;
+
+
 };
 /*  Sample Application.  */
 var wbPushRss = {

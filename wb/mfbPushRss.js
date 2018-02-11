@@ -1,9 +1,6 @@
 /**
  * Created by bloodspasm on 2017/12/29.
  */
-/**
- * Created by bloodspasm on 2017/10/8.
- */
 require('../prototypeJs/prototypeJs');
 var express = require('express');
 var fs = require('fs');
