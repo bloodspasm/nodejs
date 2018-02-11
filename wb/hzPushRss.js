@@ -90,8 +90,7 @@ var SampleApp = function () {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json;charset=UTF-8'
         };
-
-
+        
         var options = {
             url: 'https://star.8.163.com/api/starUserCoin/collectUserCoin',
             method: 'POST',
