@@ -4,7 +4,6 @@
 require('../prototypeJs/prototypeJs');
 var express = require('express');
 var fs = require('fs');
-var crypto = require('crypto');
 var request = require('request');
 var feedster = require('feedster');
 /**
