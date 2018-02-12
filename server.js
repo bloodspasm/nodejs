@@ -141,5 +141,4 @@ schedule.scheduleJob(rule2, function(){
     hzPushRss.starthzPushRss()
 });
 
-
 module.exports = app ;

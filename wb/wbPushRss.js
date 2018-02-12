@@ -260,7 +260,7 @@ var SampleApp = function () {
         }, function (error, response, body) {
             console.log(body)
             console.log(typeof (body))
-            self.textSentiment(4,title)
+            // self.textSentiment(4,title)
             if(typeof (body) !== 'object'){
                 // console.log('mmp')
                 // // self.sleep(1000)

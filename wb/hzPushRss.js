@@ -25,8 +25,7 @@ var SampleApp = function () {
 
     });
 
-
-
+    var cookit = '_ga=GA1.2.1436162892.1518168885; _gat=1; NTES_YD_SESS=ZcAgmlwvREWNNs3U9EtCUPxrrEApzM.A5xu4BbEZR4k7l.DwlvG8Q0Q12z9.8sl0TSOI10Y48RnnwmpsNPnJhyI5IJ2uAzESLe6N1kBaPmYeV0n0AySeeRWzRvcxhDs.nw1Mio99eBGnUTgR1Ch1irNqVk3LABx9wVXngSzbHp3dg4u75oq6r16d8x9bgc25h2sDXOokdsl1v9xfELb9KIdOybgsc8IfKGQBrxSuJpX7I; STAREIG=d7ae858cb77165a26986c2ccebf2ccdd78af3a6f';
 
     self.indexList = function () {
 
@@ -36,11 +35,7 @@ var SampleApp = function () {
             'Host': 'star.8.163.com',
             'Referer': 'https://star.8.163.com/m',
             'Origin': 'https://star.8.163.com',
-            'Cookie':
-            'STAREIG=9a8304161b9596c9af1dc19e186ea63b7239b55d; ' +
-            '_ga=GA1.2.1436162892.1518168885; ' +
-            '_gat=1; ' +
-            'NTES_YD_SESS=cZgRmAKIzYc9.JRQIYQgp025.29YuikCsMon45FcknBV9dUy9SsiI2I6eJxdib92HY.v62TnikttyqzbWgtGD1v8vGeoRJFYQO3W6B4mgqTOC2t2R1YOOkfJkSrMDUbdty6_LjxxO4stwHuk6pD6LlWKCB7QR4MxyCEtuYJ5Xz7aunoV8jK3l63aiMx5ure8DebUE.jBab96SxM0FQ5xhva.15ubriv0hsI4lMYoGzEVv'
+            'Cookie': cookit
         };
 
 
@@ -60,13 +55,15 @@ var SampleApp = function () {
                     });
                     //挖矿了
                     feed.addItem({
-                        title: '挖到矿石了:'+now
+                        title: '挖到矿石了:'+now,
+                        description: now
                     });
                 }
             }else{
                 //过期了
                 feed.addItem({
-                    title: '账号过期了:'+now
+                    title: '账号过期了:'+now,
+                    description: now
                 });
             }
 
@@ -86,11 +83,11 @@ var SampleApp = function () {
             'Host': 'star.8.163.com',
             'Referer': 'https://star.8.163.com/m',
             'Origin': 'https://star.8.163.com',
-            'Cookie': 'STAREIG=9a8304161b9596c9af1dc19e186ea63b7239b55d; _ga=GA1.2.1436162892.1518168885; _gat=1; NTES_YD_SESS=cZgRmAKIzYc9.JRQIYQgp025.29YuikCsMon45FcknBV9dUy9SsiI2I6eJxdib92HY.v62TnikttyqzbWgtGD1v8vGeoRJFYQO3W6B4mgqTOC2t2R1YOOkfJkSrMDUbdty6_LjxxO4stwHuk6pD6LlWKCB7QR4MxyCEtuYJ5Xz7aunoV8jK3l63aiMx5ure8DebUE.jBab96SxM0FQ5xhva.15ubriv0hsI4lMYoGzEVv',
+            'Cookie': cookit,
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json;charset=UTF-8'
         };
-        
+
         var options = {
             url: 'https://star.8.163.com/api/starUserCoin/collectUserCoin',
             method: 'POST',
