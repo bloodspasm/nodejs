@@ -120,6 +120,7 @@ console.log('Server running on http://%s:%s', ip, port);
 var mfbPushRss = require('./wb/mfbPushRss');
 var wbPushRss = require('./wb/wbPushRss');
 var hzPushRss = require('./wb/hzPushRss');
+var hzChild1Push = require('./wb/hzChild1Push');
 
 
 var schedule = require("node-schedule");
@@ -139,6 +140,7 @@ rule2.minute  = times2;
 schedule.scheduleJob(rule2, function(){
     //15分钟任务
     hzPushRss.starthzPushRss()
+    hzChild1Push.starthzChild1Push()
 });
 
 module.exports = app ;
