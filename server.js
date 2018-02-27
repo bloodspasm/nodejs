@@ -140,10 +140,10 @@ if (env === 'development'){
 
 
     var rule2     = new schedule.RecurrenceRule();
-    var times2    = [0,15,30,45,59];
+    var times2    = [1,11,21,31,41,51];
     rule2.minute  = times2;
     schedule.scheduleJob(rule2, function(){
-        //15分钟任务
+        //10分钟任务
         hzPushRss.starthzPushRss()
         hzChild1Push.starthzChild1Push()
     });
