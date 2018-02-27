@@ -24,7 +24,7 @@ var SampleApp = function () {
         request(urls, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 var obj = JSON.parse(body);
-                //console.log(obj.data.houseList);
+                console.log(obj.data.houseList);
                 var date = new Date();
                 var feed = feedster.createFeed({
                     title: '魔方宝发布了新项目',
@@ -37,12 +37,14 @@ var SampleApp = function () {
                 var houseList =  obj.data.houseList;
                 for (var i = 1; i < houseList.length - 2; i++) {
                     var item = houseList[i];
-                    var title = item.houseName+'|时间:'+item.minInvestTime+'月|利率:'+item.minInvestReturn+'%';
-                    feed.addItem({
-                        title: title,
-                        description: item.minInvestTime,
-                        link: item.headPic,
-                    });
+                    if  (item.leftInvest < 600){
+                        var title = item.houseName+'|时间:'+item.minInvestTime+'月|利率:'+item.minInvestReturn+'%';
+                        feed.addItem({
+                            title: title,
+                            description: item.minInvestTime,
+                            link: item.headPic,
+                        });
+                    }
                 }
 
                 var rss = feed.render();

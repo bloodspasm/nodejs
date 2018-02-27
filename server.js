@@ -115,7 +115,9 @@ initDb(function(err){
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
 
-
+var env = process.env.NODE_ENV || 'development'
+console.log('process.env.NODE_ENV ')
+console.log(env)
 
 var mfbPushRss = require('./wb/mfbPushRss');
 var wbPushRss = require('./wb/wbPushRss');
@@ -123,24 +125,28 @@ var hzPushRss = require('./wb/hzPushRss');
 var hzChild1Push = require('./wb/hzChild1Push');
 
 
-var schedule = require("node-schedule");
-var rule1     = new schedule.RecurrenceRule();
-var times1    = [30];
-rule1.second  = times1;
-schedule.scheduleJob(rule1, function(){
-    //30秒任务
+if (env === development){
     mfbPushRss.startmfbPushRss();
-    wbPushRss.startwbPushRss()
-});
+}else{
+    var schedule = require("node-schedule");
+    var rule1     = new schedule.RecurrenceRule();
+    var times1    = [30];
+    rule1.second  = times1;
+    schedule.scheduleJob(rule1, function(){
+        //30秒任务
+        mfbPushRss.startmfbPushRss();
+        wbPushRss.startwbPushRss()
+    });
 
 
-var rule2     = new schedule.RecurrenceRule();
-var times2    = [0,15,30,45,59];
-rule2.minute  = times2;
-schedule.scheduleJob(rule2, function(){
-    //15分钟任务
-    hzPushRss.starthzPushRss()
-    hzChild1Push.starthzChild1Push()
-});
+    var rule2     = new schedule.RecurrenceRule();
+    var times2    = [0,15,30,45,59];
+    rule2.minute  = times2;
+    schedule.scheduleJob(rule2, function(){
+        //15分钟任务
+        hzPushRss.starthzPushRss()
+        hzChild1Push.starthzChild1Push()
+    });
+}
 
 module.exports = app ;
