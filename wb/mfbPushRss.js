@@ -37,7 +37,7 @@ var SampleApp = function () {
                 var houseList =  obj.data.houseList;
                 for (var i = 1; i < houseList.length - 2; i++) {
                     var item = houseList[i];
-                    if  (item.leftInvest < 600){
+                    if  (item.leftInvest < 1000){
                         var title = item.houseName+'|时间:'+item.minInvestTime+'月|利率:'+item.minInvestReturn+'%';
                         feed.addItem({
                             title: title,
