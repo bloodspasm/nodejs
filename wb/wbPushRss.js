@@ -3,6 +3,7 @@
  */
 
 require('../prototypeJs/prototypeJs');
+var util = require('../prototypeJs/util');
 var express = require('express');
 var fs = require('fs');
 var request = require('request');
@@ -79,9 +80,11 @@ var SampleApp = function () {
 
 //https://m.weibo.cn/api/comments/show?id=4155501182321076&page=1
 //4155501182321076
+    var wbjsonPath = path.resolve(__dirname, '..')+"/public/wbPushRss.json"
+    var wbxmlPath = path.resolve(__dirname, '..')+"/public/wbPushRss.xml"
     var arr = [];
     self.getIndex = function (wbUserId, conId) {
-        //self.NSLog("缓存数量------" + arr.length)
+        arr = util.readArray(wbjsonPath)
         for (var n = 0; n < 1; n++) {
             var urls = 'https://m.weibo.cn/api/container/getIndex?uid=' + wbUserId + '&type=uid&value=' + wbUserId + '&page=' + n + '&containerid=' + conId;
             //console.log(urls)
@@ -118,7 +121,7 @@ var SampleApp = function () {
                                 title = text.substring(0, 18)
                                 title = title + "..."
                             }
-                            arr.push(thumbnail_pic);
+
 
                             var author;
                             if (wbUserId == '6077805247') {
@@ -148,22 +151,46 @@ var SampleApp = function () {
                                 link: cards.scheme,
                             });
                             mblog.created_at =  time
-                            var URL = 'https://api.leancloud.cn/1.1/classes/wbPushRss';
-                            self.wb_leancloud(URL,mblog,title,function () {
 
-                            })
+                            if(isInArray(arr,mblog.mid) === false){
+                                console.log('不存在')
+                                arr.push(mblog.mid);
+                                util.writeFile(wbjsonPath,arr)
+
+                                self.wxPush('小饼干更新了微博了~', mblog.text + '   '+ cards.scheme)
+
+                                var URL = 'https://api.leancloud.cn/1.1/classes/wbPushRss';
+                                self.wb_leancloud(URL,mblog,title,function () {
+
+                                })
+                            }
                         }
 
                     }
                     var rss = feed.render();
-                    self.writeRss(rss);
+                    util.writeFile(wbxmlPath,rss)
                 }
             })
 
         }
     }
 
+    function isInArray(arr,value){
+        for(var i = 0; i < arr.length; i++){
+            if(value === arr[i]){
+                return true;
+            }
+        }
+        return false;
+    }
 
+
+    /**
+     * 文本过滤 - 递归拼接
+     * @param myString
+     * @param appstring
+     * @returns {*}
+     */
     function wbstring(myString,appstring) {
         var s=myString.indexOf('<');
         var e=myString.indexOf('>');
@@ -198,47 +225,27 @@ var SampleApp = function () {
     }
 
 
+    self.wxPush = function (text,desp) {
 
-    self.getComments = function (cid, themeObject) {
-        for (var n = 0; n < 1; n++) {
-            var urls = 'https://m.weibo.cn/api/comments/show?id=' + cid + '&page=' + n
-            request(urls, function (error, response, body) {
-                if (!error && response.statusCode == 200) {
-                    var obj = JSON.parse(body);
-                    //console.log(obj.data)
-                    var data = obj.data;
-                    console.log(data)
-                    for (var i = 0; i < data.length; i++) {
+        var request = require("request");
 
-                        var time = self.timeFrame()
-                        var showUser = data[i].user;
-                        var text = data[i].text;
-                        text = text.replace(/<\/?[^>]*>/g, ''); //去除HTML tag
-                        var body = {
-                            "themeObject": themeObject,
-                            "isAnonymity": true,
-                            "ts": time,
-                            "themeComment": text,
-                            "showUser": showUser
-                        };
-                        console.log(body)
-                        //var URL = 'https://api.leancloud.cn/1.1/classes/comment';
-                        //self.leancloud(URL, body);
-                    }
-                }
-            })
-        }
+        var options = { method: 'POST',
+            url: 'http://sc.ftqq.com/SCU22824T08731a59cd89a114b11a12f596907f2d5aa2323cc37b2.send',
+            headers:
+                { 'postman-token': 'd0c5646b-08a2-71f5-1b83-6918b4c9b438',
+                    'cache-control': 'no-cache',
+                    'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
+            formData: { text: text, desp: desp } };
+
+        request(options, function (error, response, body) {
+            if (error) throw new Error(error);
+
+            console.log(body);
+        });
+
 
     }
 
-    self.writeRss = function (rss) {
-        fs.writeFile( path.resolve(__dirname, '..')+"/public/wbPushRss.xml", rss, function (err) {
-            if (err) throw err;
-            // console.log(rss);
-        })
-    }
-
-//wbPushRss
     self.wb_leancloud = function (urls, bodyQuery,title,callback) {
 
 
@@ -258,27 +265,11 @@ var SampleApp = function () {
             headers: head,
             body: bodyQuery
         }, function (error, response, body) {
-            console.log(body)
-            console.log(typeof (body))
-            // self.textSentiment(4,title)
-            if(typeof (body) !== 'object'){
-                // console.log('mmp')
-                // // self.sleep(1000)
-                // return self.wb_leancloud(urls, bodyQuery,callback);
-            }else if (body.code === 137) {
-                //console.log(body)
-                // callback()
-            }else if (body.code === 1) {
-                //console.log(body)
-                // callback()
-            }else if (!error && response.statusCode === 200) {
-                //console.log(body)
-                // self.textSentiment(4,title)
-            }else{
-                // return self.wb_leancloud(urls, bodyQuery,callback);
-            }
+
         });
     }
+
+
 
 
 
@@ -342,6 +333,7 @@ var wbPushRss = {
     startwbPushRss: function () {
         console.log("wbPushRss开始");
         var zapp = new SampleApp();
+
         zapp.getWBQueue('3152574715')
     }
 }
