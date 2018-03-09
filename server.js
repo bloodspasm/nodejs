@@ -125,8 +125,39 @@ var hzPushRss = require('./wb/hzPushRss');
 var hzChild1Push = require('./wb/hzChild1Push');
 
 
+// const { getUrl, isIncludeUrl, isSendUrl, getUserOwnInfo, isMeituan, getUrlType} = require("./utils")
+// const axios = require("axios")
+// const qq = require('smartqqbot');
+// let userInfos = []   //用户信息（姓名，红包）
 if (env === 'development'){
-    mfbPushRss.startmfbPushRss();
+
+    // var wxApp = require('./wb/wxApp');
+//     let bot = qq.new();
+// // 登录
+//     bot.login('./public/qq.png',(error) => {
+//         if (error) console.log(error);
+//     // 初始化
+//     bot.initialize();
+// });
+
+// 打印讨论组消息
+//     bot.on('discuss_message', (content, from, send) => {
+//         console.log((send.markname || send.nick) + ' : ' + content + ' from ' + from.name);
+// });
+
+// 打印群消息
+//     bot.on('group_message', (content, from, send) => {
+//         console.log((send.card || send.markname || send.nick) + ': ' + content + ' from: ' + from.name);
+// });
+
+// 打印联系人消息并回复同样的内容
+//     bot.on('message', (content, from, to) => {
+//         var msg = (from.markname || from.nick) + ': ' + content
+//         console.log(msg);
+//
+// });
+    
+
 }else{
     var schedule = require("node-schedule");
     var rule1     = new schedule.RecurrenceRule();

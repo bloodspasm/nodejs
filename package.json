@@ -4,6 +4,7 @@
   "description": "Node.js sample app for OpenShift 3",
   "main": "server.js",
   "dependencies": {
+    "axios": "^0.18.0",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
     "ejs": "^2.4.1",
@@ -17,7 +18,10 @@
     "node-schedule": "^1.3.0",
     "object-assign": "4.1.0",
     "qcloudapi-sdk": "^0.1.6",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "smartqqbot": "^0.9.0",
+    "qrcode-terminal": "^0.11.0",
+    "wechaty": "^0.13.70"
   },
   "engine": {
     "node": "*",
