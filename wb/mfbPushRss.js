@@ -55,7 +55,10 @@ var SampleApp = function () {
                             console.log('不存在')
                             arr.push(title);
                             util.writeFile(mfbjsonPath,arr)
-                            self.wxPush('魔方宝发布了新项目了~', title)
+                            var URL = 'https://api.leancloud.cn/1.1/classes/mfbPushRss';
+                            self.mfb_leancloud(URL,item,title,function () {
+                                self.wxPush('魔方宝发布了新项目了~', title)
+                            })
                         }
                     }
 
@@ -142,6 +145,7 @@ var SampleApp = function () {
                 // callback()
             }else if (!error && response.statusCode === 200) {
                 console.log('存储成功')
+                callback()
             }else{
                 // return self.wb_leancloud(urls, bodyQuery,callback);
             }

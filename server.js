@@ -141,7 +141,7 @@ if (env === 'development'){
 
 
     var rule2     = new schedule.RecurrenceRule();
-    var times2    = [1,11,21,31,41,51];
+    var times2    = [5,15,25,35,45,55];
     rule2.minute  = times2;
     schedule.scheduleJob(rule2, function(){
         //10分钟任务

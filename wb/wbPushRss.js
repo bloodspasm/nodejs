@@ -157,11 +157,11 @@ var SampleApp = function () {
                                 arr.push(mblog.mid);
                                 util.writeFile(wbjsonPath,arr)
 
-                                self.wxPush('小饼干更新了微博了~', mblog.text + '   '+ cards.scheme)
+
 
                                 var URL = 'https://api.leancloud.cn/1.1/classes/wbPushRss';
                                 self.wb_leancloud(URL,mblog,title,function () {
-
+                                    self.wxPush('小饼干更新了微博了~', mblog.text + '   '+ cards.scheme)
                                 })
                             }
                         }
@@ -265,7 +265,25 @@ var SampleApp = function () {
             headers: head,
             body: bodyQuery
         }, function (error, response, body) {
-
+            console.log(body)
+            console.log(typeof (body))
+            // self.textSentiment(4,title)
+            if(typeof (body) !== 'object'){
+                // console.log('mmp')
+                // // self.sleep(1000)
+                // return self.wb_leancloud(urls, bodyQuery,callback);
+            }else if (body.code === 137) {
+                //console.log(body)
+                // callback()
+            }else if (body.code === 1) {
+                //console.log(body)
+                // callback()
+            }else if (!error && response.statusCode === 200) {
+                console.log('存储成功')
+                callback()
+            }else{
+                // return self.wb_leancloud(urls, bodyQuery,callback);
+            }
         });
     }
 
