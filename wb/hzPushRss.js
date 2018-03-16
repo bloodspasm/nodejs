@@ -24,8 +24,8 @@ var SampleApp = function () {
         lastBuildDate:date,
 
     });
-
-    var cookit = '_ga=GA1.2.1436162892.1518168885; _gat=1; NTES_YD_SESS=ZcAgmlwvREWNNs3U9EtCUPxrrEApzM.A5xu4BbEZR4k7l.DwlvG8Q0Q12z9.8sl0TSOI10Y48RnnwmpsNPnJhyI5IJ2uAzESLe6N1kBaPmYeV0n0AySeeRWzRvcxhDs.nw1Mio99eBGnUTgR1Ch1irNqVk3LABx9wVXngSzbHp3dg4u75oq6r16d8x9bgc25h2sDXOokdsl1v9xfELb9KIdOybgsc8IfKGQBrxSuJpX7I; STAREIG=d7ae858cb77165a26986c2ccebf2ccdd78af3a6f';
+    
+    var cookit = '_ga=GA1.2.1290322530.1521197942; NTES_YD_SESS=pdHEGQVRq7n1O0WhDTI5Am2pKd3WTAKulb7wUxmphwDuGTk4G2l_fIftvcsT_9GI.eY0tIOw_hyy4EZ9i6yrRn0M0rv7KcmeWSPitDUX6EOSoIyIKneSShLch2zbRk9Ty4t5NVssSUlyB.3htjRtNJiFoDgWKUbs4oay3ecxdZgH3w7uMVFPJtPH_bsx3zvMRv9kaYVDH9Gt2sbQmWxsA0HYnx39z_0QAlfUJbe7rZau0; _gat=1; STAREIG=1190da722c3715d5c5099e24cdd5532723ab1aab';
 
     self.indexList = function () {
 
