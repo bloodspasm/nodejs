@@ -272,17 +272,12 @@ var SampleApp = function () {
                 // console.log('mmp')
                 // // self.sleep(1000)
                 // return self.wb_leancloud(urls, bodyQuery,callback);
-            }else if (body.code === 137) {
+            }else if (body.code > 0) {
                 //console.log(body)
                 // callback()
-            }else if (body.code === 1) {
-                //console.log(body)
-                // callback()
-            }else if (!error && response.statusCode === 200) {
+            }else{
                 console.log('存储成功')
                 callback()
-            }else{
-                // return self.wb_leancloud(urls, bodyQuery,callback);
             }
         });
     }
