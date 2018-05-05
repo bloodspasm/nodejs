@@ -20,11 +20,11 @@ var SampleApp = function () {
     var list = [];
 
 
-    var mfbjsonPath = path.resolve(__dirname, '..')+"/public/mfbPushRss.json"
+    // var mfbjsonPath = path.resolve(__dirname, '..')+"/public/mfbPushRss.json"
     var mfbxmlPath = path.resolve(__dirname, '..')+"/public/mfbPushRss.xml"
     var arr = [];
     self.rssLog = function () {
-        arr = util.readArray(mfbjsonPath)
+        //arr = util.readArray(mfbjsonPath)
         var urls = 'http://wxmp.momfo.com/house/momBaby.do?page=1&row=10';
         request(urls, function (error, response, body) {
             if (!error && response.statusCode == 200) {
@@ -43,14 +43,14 @@ var SampleApp = function () {
                 for (var i = 1; i < houseList.length - 2; i++) {
                     var item = houseList[i];
                     var title = item.houseName+'|时间:'+item.minInvestTime+'月|利率:'+item.minInvestReturn+'%';
-                    if  (item.leftInvest < 6000){
+                    if  (item.leftInvest < 600){
 
                         feed.addItem({
                             title: title,
                             description: item.minInvestTime,
                             link: item.headPic,
                         });
-
+                        /*
                         if(isInArray(arr,title) === false){
                             console.log('不存在')
                             arr.push(title);
@@ -60,6 +60,11 @@ var SampleApp = function () {
                                 self.wxPush('魔方宝发布了新项目了~', title)
                             })
                         }
+                        */
+                        var URL = 'https://api.leancloud.cn/1.1/classes/mfbPushRss';
+                        self.mfb_leancloud(URL,item,title,function () {
+                            self.wxPush('魔方宝发布了新项目了~', title)
+                        })
                     }
 
 

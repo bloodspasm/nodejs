@@ -80,11 +80,11 @@ var SampleApp = function () {
 
 //https://m.weibo.cn/api/comments/show?id=4155501182321076&page=1
 //4155501182321076
-    var wbjsonPath = path.resolve(__dirname, '..')+"/public/wbPushRss.json"
+    //var wbjsonPath = path.resolve(__dirname, '..')+"/public/wbPushRss.json"
     var wbxmlPath = path.resolve(__dirname, '..')+"/public/wbPushRss.xml"
     var arr = [];
     self.getIndex = function (wbUserId, conId) {
-        arr = util.readArray(wbjsonPath)
+        //arr = util.readArray(wbjsonPath)
         for (var n = 0; n < 1; n++) {
             var urls = 'https://m.weibo.cn/api/container/getIndex?uid=' + wbUserId + '&type=uid&value=' + wbUserId + '&page=' + n + '&containerid=' + conId;
             //console.log(urls)
@@ -152,18 +152,20 @@ var SampleApp = function () {
                             });
                             mblog.created_at =  time
 
+                            /*
                             if(isInArray(arr,mblog.mid) === false){
                                 console.log('不存在')
                                 arr.push(mblog.mid);
                                 util.writeFile(wbjsonPath,arr)
-
-
-
                                 var URL = 'https://api.leancloud.cn/1.1/classes/wbPushRss';
                                 self.wb_leancloud(URL,mblog,title,function () {
                                     self.wxPush('小饼干更新了微博了~', mblog.text + '   '+ cards.scheme)
                                 })
-                            }
+                            }*/
+                            var URL = 'https://api.leancloud.cn/1.1/classes/wbPushRss';
+                            self.wb_leancloud(URL,mblog,title,function () {
+                                self.wxPush('小饼干更新了微博了~', mblog.text + '   '+ cards.scheme)
+                            })
                         }
 
                     }
