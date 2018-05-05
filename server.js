@@ -126,7 +126,6 @@ var hzChild1Push = require('./wb/hzChild1Push');
 
 
 if (env === 'development'){
-    wbPushRss.startwbPushRss()
     mfbPushRss.startmfbPushRss();
 }else{
     var schedule = require("node-schedule");

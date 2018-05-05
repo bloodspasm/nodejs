@@ -229,22 +229,41 @@ var SampleApp = function () {
 
     self.wxPush = function (text,desp) {
 
+        // var request = require("request");
+        // /*
+        // * https://pushbear.ftqq.com/sub?sendkey={sendkey}&text={text}&desp={desp}
+        // * */
+        // var options = { method: 'POST',
+        //     url: 'http://sc.ftqq.com/SCU22824T08731a59cd89a114b11a12f596907f2d5aa2323cc37b2.send',
+        //     headers:
+        //         { 'postman-token': 'd0c5646b-08a2-71f5-1b83-6918b4c9b438',
+        //             'cache-control': 'no-cache',
+        //             'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
+        //     formData: { text: text, desp: desp } };
+        //
+        // request(options, function (error, response, body) {
+        //     if (error) throw new Error(error);
+        //
+        //     console.log(body);
+        // });
+
         var request = require("request");
 
-        var options = { method: 'POST',
-            url: 'http://sc.ftqq.com/SCU22824T08731a59cd89a114b11a12f596907f2d5aa2323cc37b2.send',
+        var options = { method: 'GET',
+            url: 'https://pushbear.ftqq.com/sub',
+            qs:
+                { sendkey: '3583-47c39f462698c479bb85f01a259925a8',
+                    text: text,
+                    desp: desp },
             headers:
-                { 'postman-token': 'd0c5646b-08a2-71f5-1b83-6918b4c9b438',
-                    'cache-control': 'no-cache',
-                    'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
-            formData: { text: text, desp: desp } };
+                { 'postman-token': '948a6485-ec87-dbb2-999b-c2992349279b',
+                    'cache-control': 'no-cache' } };
 
         request(options, function (error, response, body) {
             if (error) throw new Error(error);
 
             console.log(body);
         });
-
 
     }
 
@@ -267,8 +286,8 @@ var SampleApp = function () {
             headers: head,
             body: bodyQuery
         }, function (error, response, body) {
-            console.log(body)
-            console.log(typeof (body))
+            //console.log(body)
+            //console.log(typeof (body))
             // self.textSentiment(4,title)
             if(typeof (body) !== 'object'){
                 // console.log('mmp')

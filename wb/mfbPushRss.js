@@ -63,6 +63,7 @@ var SampleApp = function () {
                         */
                         var URL = 'https://api.leancloud.cn/1.1/classes/mfbPushRss';
                         self.mfb_leancloud(URL,item,title,function () {
+                            console.log(title)
                             self.wxPush('魔方宝发布了新项目了~', title)
                         })
                     }
@@ -96,6 +97,7 @@ var SampleApp = function () {
 
     self.wxPush = function (text,desp) {
 
+        /*
         var request = require("request");
 
         var options = { method: 'POST',
@@ -110,7 +112,26 @@ var SampleApp = function () {
             if (error) throw new Error(error);
 
             console.log(body);
+        });*/
+
+        var request = require("request");
+
+        var options = { method: 'GET',
+            url: 'https://pushbear.ftqq.com/sub',
+            qs:
+                { sendkey: '3583-47c39f462698c479bb85f01a259925a8',
+                    text: text,
+                    desp: desp },
+            headers:
+                { 'postman-token': '948a6485-ec87-dbb2-999b-c2992349279b',
+                    'cache-control': 'no-cache' } };
+
+        request(options, function (error, response, body) {
+            if (error) throw new Error(error);
+
+            console.log(body);
         });
+
 
 
     }
@@ -135,8 +156,8 @@ var SampleApp = function () {
             headers: head,
             body: bodyQuery
         }, function (error, response, body) {
-            console.log(body)
-            console.log(typeof (body))
+            //console.log(body)
+            //console.log(typeof (body))
             // self.textSentiment(4,title)
             if(typeof (body) !== 'object'){
                 // console.log('mmp')
