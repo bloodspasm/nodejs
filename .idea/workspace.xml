@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1fcae718-8652-4e36-b08e-161a7a802e03" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/base/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/base/static/css/app.c858c680fbe6a9da5b16fccdce6a52dc.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/base/static/js/0.c46138e0cadd7996a9c1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/base/static/js/app.75980315fcb3daab43b1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/base/static/js/manifest.444bb23b9557f1a8a25a.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/base/static/js/vendor.2195150579605c35c289.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -26,8 +20,8 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+            <state relative-caret-position="234">
+              <caret line="121" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -401,17 +395,18 @@
       <workItem from="1525394831066" duration="915000" />
       <workItem from="1525486043185" duration="624000" />
       <workItem from="1525537972723" duration="1243000" />
-      <workItem from="1528358201814" duration="342000" />
+      <workItem from="1528358201814" duration="653000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36171000" />
+    <option name="totallyTimeSpent" value="36482000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="52" y="23" width="1628" height="1027" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15825978" sideWeight="0.47272727" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15825978" sideWeight="0.47272727" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -761,8 +756,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+        <state relative-caret-position="234">
+          <caret line="121" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
           <folding />
         </state>
       </provider>
