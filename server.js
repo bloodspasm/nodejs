@@ -125,30 +125,30 @@ var hzPushRss = require('./wb/hzPushRss');
 var hzChild1Push = require('./wb/hzChild1Push');
 
 
-if (env === 'development'){
-    mfbPushRss.startmfbPushRss();
-}else{
-    var schedule = require("node-schedule");
-    var rule1     = new schedule.RecurrenceRule();
-    var times1    = [5,15,25,35,45,55];
-    rule1.second  = times1;
-    schedule.scheduleJob(rule1, function(){
-        //10秒任务
-        mfbPushRss.startmfbPushRss();
-
-    });
-
-
-    var rule2     = new schedule.RecurrenceRule();
-    var times2    = [5,15,25,35,45,55];
-    rule2.minute  = times2;
-    schedule.scheduleJob(rule2, function(){
-        //10分钟任务
-        wbPushRss.startwbPushRss()
-        hzPushRss.starthzPushRss()
-        hzChild1Push.starthzChild1Push()
-
-    });
-}
+// if (env === 'development'){
+//     mfbPushRss.startmfbPushRss();
+// }else{
+//     var schedule = require("node-schedule");
+//     var rule1     = new schedule.RecurrenceRule();
+//     var times1    = [5,15,25,35,45,55];
+//     rule1.second  = times1;
+//     schedule.scheduleJob(rule1, function(){
+//         //10秒任务
+//         mfbPushRss.startmfbPushRss();
+//
+//     });
+//
+//
+//     var rule2     = new schedule.RecurrenceRule();
+//     var times2    = [5,15,25,35,45,55];
+//     rule2.minute  = times2;
+//     schedule.scheduleJob(rule2, function(){
+//         //10分钟任务
+//         wbPushRss.startwbPushRss()
+//         hzPushRss.starthzPushRss()
+//         hzChild1Push.starthzChild1Push()
+//
+//     });
+// }
 
 module.exports = app ;
